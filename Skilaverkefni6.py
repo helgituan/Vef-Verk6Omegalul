@@ -1,4 +1,5 @@
 from bottle import *
+import os
 
 @route('/static/<filename>')
 def static_server(filename):
@@ -35,4 +36,4 @@ def order():
     heildarverd = len(alegg)*200+verd[pizzasize]
     vsk = format(heildarverd*1.25,'.0f')
     return template('order',vsk=vsk,heildarverd=heildarverd,alegg=alegg, fullname=fullname ,address=address,email=email,phone=phone, pizzasize=pizzasize)
-run()
+run(host="0.0.0.0", port=os.environ.get('PORT'))
